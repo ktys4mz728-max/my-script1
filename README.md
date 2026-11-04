@@ -1,22 +1,39 @@
 -- // ========================================
--- // L.7 - Custom Loader & Advanced Script
+-- // L.7 - Ultimate Custom Script Hub
+-- // Created exclusively for L.7
 -- // ========================================
 
 local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
 local localPlayer = Players.LocalPlayer
 
--- رسالة ترحيبية وتأكيد عمل السكربت في الكونسول
+-- دالة إرسال إشعار داخل اللعبة (محمية بـ pcall لتفادي أي أخطاء)
+local function sendNotification(title, text, duration)
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = title,
+            Text = text,
+            Duration = duration or 5,
+        })
+    end)
+end
+
+-- رسالة الترحيب في الكونسول
 print("----------------------------------------")
-print(" [L.7 Hub] Script loaded successfully!")
-print(" Player: " .. tostring(localPlayer.Name))
+print(" [L.7 Hub] Initializing script for: " .. tostring(localPlayer.Name))
 print("----------------------------------------")
 
--- يمكنك إضافة الأوامر أو الواجهة الخاصة بك هنا
+-- تشغيل الأوامر الأساسية بأمان تام (حماية pcall)
 local success, err = pcall(function()
-    -- مكان تنفيذ الأكواد الأساسية للسكربت
-    print("Executing L.7 script functions...")
+    -- [ هنا يقدر يوضع كود الوظائف أو الأزرار أو التعديلات المستقبلية ]
+    print("L.7 Script executed successfully without errors.")
+    
+    -- إرسال إشعار مرئي أول ما يشتغل السكربت داخل اللعبة
+    sendNotification("L.7 Hub", "تم تفعيل السكربت بنجاح، أهلاً بك يا L.7!", 6)
 end)
 
 if not success then
-    warn("Error executing L.7 script: " .. tostring(err))
+    warn("[L.7 Error]: Failed to execute main functions: " .. tostring(err))
+    sendNotification("L.7 Error", "حدث خطأ بسيط أثناء تشغيل السكربت.", 5)
 end
+
